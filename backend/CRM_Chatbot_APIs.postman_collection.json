@@ -1,0 +1,531 @@
+{
+	"info": {
+		"_postman_id": "8fb347ea-628d-4e9b-b65f-4d9f67a2160b",
+		"name": "CRM Chatbot APIs",
+		"description": "Collection to test the CRM Django backend endpoints including authentication, model CRUDs, and RAG Chatbot APIs.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Obtain JWT Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"if (jsonData.access) {",
+									"    pm.environment.set(\"accessToken\", jsonData.access);",
+									"}",
+									"if (jsonData.refresh) {",
+									"    pm.environment.set(\"refreshToken\", jsonData.refresh);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"director\",\n    \"password\": \"director123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/token/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"token",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh JWT Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"if (jsonData.access) {",
+									"    pm.environment.set(\"accessToken\", jsonData.access);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"refresh\": \"{{refreshToken}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/token/refresh/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"token",
+								"refresh",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Chatbot",
+			"item": [
+				{
+					"name": "Health Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/health/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"health",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Suggestions List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/suggestions/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"suggestions",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset History",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/reset/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"reset",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Submit Chat Query",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"query\": \"Show all enquiries\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/chat/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"chat",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CRM Enquiries",
+			"item": [
+				{
+					"name": "Get Enquiries",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/enquiry/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"enquiry",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Enquiry",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"{{enquiryId}}\",\n    \"customer\": \"Postman QA {{testRunId}}\",\n    \"vehicle\": \"MT-15\",\n    \"temperature\": \"Hot\",\n    \"status\": \"New Lead\",\n    \"date\": \"2026-05-26\",\n    \"source\": \"Postman\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/enquiry/create/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"enquiry",
+								"create",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CRM Appointments",
+			"item": [
+				{
+					"name": "Get Appointments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/appointment/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"appointment",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Appointment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"{{appointmentId}}\",\n    \"customer\": \"Postman QA {{testRunId}}\",\n    \"vehicle\": \"MT-15\",\n    \"status\": \"Scheduled\",\n    \"date\": \"2026-05-27\",\n    \"time\": \"02:45 PM\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/appointment/create/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"appointment",
+								"create",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CRM Feedbacks",
+			"item": [
+				{
+					"name": "Get Feedbacks",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/feedback/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"feedback",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Feedback",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"{{feedbackId}}\",\n    \"enquiry_id\": \"{{enquiryId}}\",\n    \"customer\": \"Postman QA {{testRunId}}\",\n    \"vehicle\": \"MT-15\",\n    \"status\": \"Submitted\",\n    \"date\": \"2026-05-28\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/feedback/create/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"feedback",
+								"create",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Chatbot CRM Workflow",
+			"item": [
+				{
+					"name": "Submit Created Enquiry Chat Query",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"query\": \"Show {{enquiryId}} full details\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/chat/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"chat",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{accessToken}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"if (pm.info.requestName === \"Obtain JWT Token\" || !pm.collectionVariables.get(\"testRunId\")) {",
+					"    const suffix = Date.now().toString().slice(-8) + Math.floor(Math.random() * 100).toString().padStart(2, \"0\");",
+					"    pm.collectionVariables.set(\"testRunId\", suffix);",
+					"}",
+					"",
+					"const runId = pm.collectionVariables.get(\"testRunId\");",
+					"pm.collectionVariables.set(\"enquiryId\", `ENQ${runId}`);",
+					"pm.collectionVariables.set(\"appointmentId\", `APP${runId}`);",
+					"pm.collectionVariables.set(\"feedbackId\", `FB${runId}`);"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"const requestName = pm.info.requestName;",
+					"let jsonData = {};",
+					"try {",
+					"    jsonData = pm.response.json();",
+					"} catch (error) {",
+					"    jsonData = {};",
+					"}",
+					"",
+					"function expectStatus(codes) {",
+					"    pm.test(`${requestName} returns ${codes.join(\" or \")}`, function () {",
+					"        pm.expect(codes).to.include(pm.response.code);",
+					"    });",
+					"}",
+					"",
+					"function expectObjectKey(key) {",
+					"    pm.test(`${requestName} includes ${key}`, function () {",
+					"        pm.expect(jsonData).to.have.property(key);",
+					"    });",
+					"}",
+					"",
+					"pm.test(`${requestName} has no server error`, function () {",
+					"    pm.expect(pm.response.code).to.be.below(500);",
+					"});",
+					"",
+					"switch (requestName) {",
+					"    case \"Obtain JWT Token\":",
+					"        expectStatus([200]);",
+					"        expectObjectKey(\"access\");",
+					"        expectObjectKey(\"refresh\");",
+					"        pm.environment.set(\"accessToken\", jsonData.access);",
+					"        pm.environment.set(\"refreshToken\", jsonData.refresh);",
+					"        break;",
+					"    case \"Refresh JWT Token\":",
+					"        expectStatus([200]);",
+					"        expectObjectKey(\"access\");",
+					"        pm.environment.set(\"accessToken\", jsonData.access);",
+					"        break;",
+					"    case \"Health Status\":",
+					"        expectStatus([200]);",
+					"        pm.test(\"Health response marks chatbot ready\", function () {",
+					"            pm.expect(jsonData.status).to.eql(\"ok\");",
+					"            pm.expect(jsonData.chatbot_ready).to.be.a(\"boolean\");",
+					"            pm.expect(jsonData.llm_enabled).to.be.a(\"boolean\");",
+					"        });",
+					"        break;",
+					"    case \"Suggestions List\":",
+					"        expectStatus([200]);",
+					"        pm.test(\"Suggestions response has items\", function () {",
+					"            pm.expect(jsonData.suggestions).to.be.an(\"array\").that.is.not.empty;",
+					"        });",
+					"        break;",
+					"    case \"Reset History\":",
+					"        expectStatus([200]);",
+					"        pm.test(\"Reset returns ok\", function () {",
+					"            pm.expect(jsonData.status).to.eql(\"ok\");",
+					"        });",
+					"        break;",
+					"    case \"Submit Chat Query\":",
+					"        expectStatus([200]);",
+					"        pm.test(\"Chat response can be rendered by UI\", function () {",
+					"            pm.expect(jsonData.answer).to.be.a(\"string\").and.not.empty;",
+					"            pm.expect(jsonData.intent).to.be.a(\"string\").and.not.empty;",
+					"            pm.expect(jsonData.elapsed).to.be.a(\"number\");",
+					"        });",
+					"        break;",
+					"    case \"Submit Created Enquiry Chat Query\":",
+					"        expectStatus([200]);",
+					"        pm.test(\"Chatbot can answer from CRM data created in this run\", function () {",
+					"            pm.expect(jsonData.answer).to.include(pm.collectionVariables.get(\"enquiryId\"));",
+					"            pm.expect(jsonData.answer).to.include(`Postman QA ${pm.collectionVariables.get(\"testRunId\")}`);",
+					"            pm.expect(jsonData.intent).to.be.a(\"string\").and.not.empty;",
+					"            pm.expect(jsonData.elapsed).to.be.a(\"number\");",
+					"        });",
+					"        break;",
+					"    case \"Get Enquiries\":",
+					"    case \"Get Appointments\":",
+					"    case \"Get Feedbacks\":",
+					"        expectStatus([200]);",
+					"        pm.test(`${requestName} returns an array`, function () {",
+					"            pm.expect(jsonData).to.be.an(\"array\");",
+					"        });",
+					"        break;",
+					"    case \"Create Enquiry\":",
+					"        expectStatus([201]);",
+					"        pm.test(\"Created enquiry uses generated ID\", function () {",
+					"            pm.expect(jsonData.enquiry_id).to.eql(pm.collectionVariables.get(\"enquiryId\"));",
+					"        });",
+					"        break;",
+					"    case \"Create Appointment\":",
+					"        expectStatus([201]);",
+					"        pm.test(\"Created appointment uses generated ID\", function () {",
+					"            pm.expect(jsonData.appointment_id).to.eql(pm.collectionVariables.get(\"appointmentId\"));",
+					"        });",
+					"        break;",
+					"    case \"Create Feedback\":",
+					"        expectStatus([201]);",
+					"        pm.test(\"Created feedback is linked to generated enquiry\", function () {",
+					"            pm.expect(jsonData.feedback_id).to.eql(pm.collectionVariables.get(\"feedbackId\"));",
+					"            pm.expect(jsonData.enquiry_id).to.eql(pm.collectionVariables.get(\"enquiryId\"));",
+					"        });",
+					"        break;",
+					"}"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://127.0.0.1:8000",
+			"type": "string"
+		}
+	]
+}

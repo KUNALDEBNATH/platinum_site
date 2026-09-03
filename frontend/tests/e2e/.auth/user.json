@@ -1,0 +1,30 @@
+{
+  "cookies": [],
+  "origins": [
+    {
+      "origin": "http://127.0.0.1:8080",
+      "localStorage": [
+        {
+          "name": "salesCRM_modular_uiState",
+          "value": "{\"currentView\":\"admin-controls\",\"sidebarCollapsed\":false,\"search\":\"\",\"filters\":{\"enquiries\":{\"status\":\"all\",\"vehicle\":\"all\",\"date\":\"all\"},\"appointments\":{\"status\":\"all\",\"vehicle\":\"all\",\"date\":\"all\"},\"feedback\":{\"status\":\"all\",\"vehicle\":\"all\",\"date\":\"all\"}}}"
+        },
+        {
+          "name": "crm_loggedInUser",
+          "value": "admin"
+        },
+        {
+          "name": "crm_accessToken",
+          "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzgxMzM2MDM1LCJpYXQiOjE3ODEzMzU3MzUsImp0aSI6IjZhYTI5MmJmNjFiYTRiYjI5NWRmYWM1N2U5NWEyODBiIiwidXNlcl9pZCI6IjEiLCJyb2xlIjoiYWRtaW4iLCJ1c2VybmFtZSI6ImFkbWluIn0.qj2Po3TAdrbjmyUoRm0Rr_VbPhQi2mg0QtPEHwfUx-k"
+        },
+        {
+          "name": "crm_refreshToken",
+          "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4MTQyMjEzNSwiaWF0IjoxNzgxMzM1NzM1LCJqdGkiOiIxZWRmMmZlYTgwZWM0YmE2YmIzYTg5NmM5M2Y3MDJiYyIsInVzZXJfaWQiOiIxIiwicm9sZSI6ImFkbWluIiwidXNlcm5hbWUiOiJhZG1pbiJ9.rkYVdoOiM-wg7nxL-Q9zybnDQvOfi1eSd74Td_x_gKo"
+        },
+        {
+          "name": "crm_tokenExpiry",
+          "value": "1781336035000"
+        }
+      ]
+    }
+  ]
+}

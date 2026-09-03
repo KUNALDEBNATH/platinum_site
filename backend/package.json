@@ -1,0 +1,11 @@
+{
+  "name": "sales-llm-crm-backend-tests",
+  "private": true,
+  "scripts": {
+    "test": "pytest -q",
+    "test:postman": "newman run CRM_Chatbot_APIs.postman_collection.json --reporters cli,json --reporter-json-export postman-results.json"
+  },
+  "devDependencies": {
+    "newman": "^6.2.2"
+  }
+}
